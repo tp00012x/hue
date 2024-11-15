@@ -5,8 +5,8 @@ export default async function Home({ params }: { params: { id: string } }) {
   const { id } = await params
 
   return (
-    <div className="font-body text-textColor flex h-screen flex-col py-4 md:py-14">
-      <h1 className="text-main-header font-main-header flex items-center justify-center font-cheltenham md:container">
+    <div className="flex h-screen flex-col py-4 font-body text-textColor md:py-14">
+      <h1 className="flex items-center justify-center font-cheltenham text-main-header font-main-header md:container">
         Select It On Skin Like Yours
       </h1>
       <div className="pt-6" />

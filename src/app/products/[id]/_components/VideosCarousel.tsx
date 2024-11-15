@@ -102,8 +102,9 @@ function VideoCard({
             <div className="text-apercu">{shade.name}</div>
           </div>
         </div>
+
         <div className="p-3 md:p-4">
-          <div className="text-person-name font-person-name mb-2 md:mb-3">
+          <div className="mb-2 text-person-name font-person-name md:mb-3">
             {user.name}
           </div>
           <div className="mb-3 flex flex-wrap gap-2 text-[10px] md:mb-4 md:text-xs">

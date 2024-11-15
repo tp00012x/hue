@@ -1,0 +1,1 @@
+ALTER TABLE "reviews" ALTER COLUMN "shade_id" SET NOT NULL;

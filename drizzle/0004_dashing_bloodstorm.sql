@@ -1,0 +1,2 @@
+CREATE TYPE "public"."undertone" AS ENUM('Pink/Cool', 'Neutral', 'Yellow/Warm');--> statement-breakpoint
+ALTER TABLE "users" ALTER COLUMN "undertone" SET DATA TYPE undertone USING "undertone"::undertone;

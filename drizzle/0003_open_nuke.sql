@@ -1,0 +1,2 @@
+CREATE TYPE "public"."skin_tone" AS ENUM('Fair', 'Light', 'Medium', 'Tan', 'Dark', 'Deep');--> statement-breakpoint
+ALTER TABLE "users" ALTER COLUMN "skin_tone" SET DATA TYPE skin_tone USING "skin_tone"::skin_tone;

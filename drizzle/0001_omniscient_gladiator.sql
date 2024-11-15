@@ -1,0 +1,1 @@
+ALTER TABLE "shades" ADD COLUMN "color" varchar(255);

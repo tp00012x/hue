@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Carousel,
   CarouselContent,
@@ -6,11 +5,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { Review, User, Shade } from '@/db/schema'
+import { Review, Shade, User } from '@/db/schema'
 
+import { Card, CardContent } from '@/components/ui/card'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
-import { Card, CardContent } from '@/components/ui/card'
+import useFilterParams from '../_hooks/useFilterParams'
 
 function VideoCard({
   user,
@@ -21,8 +21,65 @@ function VideoCard({
   review: Review
   shade: Shade
 }) {
+  const { shades, skinTone, undertone } = useFilterParams()
+
+  const logEvent = async (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    const metadata = {
+      clientTimestamp: new Date().toISOString(),
+      currentUrl: window.location.href,
+      browserInfo: navigator.userAgent,
+      screenResolution: {
+        width: window.screen.width,
+        height: window.screen.height,
+      },
+      clickCoordinates: {
+        x: event.clientX,
+        y: event.clientY,
+      },
+      activeFilters: {
+        shades,
+        skinTone,
+        undertone,
+      },
+    }
+
+    console.log('Card contents:', {
+      review,
+      metadata,
+    })
+
+    try {
+      const response = await fetch('/api/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          reviewId: review.id,
+          productId: review.productId,
+          eventType: 'card_click',
+          metadata: metadata,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      console.log('Event stored:', data)
+    } catch (error) {
+      console.error('Error storing event:', error)
+    }
+  }
+
   return (
-    <Card className="z-0 h-full w-[190px] rounded-none border border-primary md:w-[264px]">
+    <Card
+      className="z-0 h-full w-[190px] rounded-none border border-primary md:w-[264px]"
+      onClick={logEvent}
+    >
       <CardContent className="p-0">
         <div
           className="relative h-[230px] bg-cover bg-center bg-no-repeat md:h-[324px]"

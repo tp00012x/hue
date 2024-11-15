@@ -57,6 +57,13 @@
       "when": 1731633430042,
       "tag": "0007_zippy_scream",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1731665607894,
+      "tag": "0008_lucky_firebird",
+      "breakpoints": true
     }
   ]
 }

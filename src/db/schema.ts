@@ -1,13 +1,14 @@
 import {
+  boolean,
+  integer,
+  jsonb,
+  pgEnum,
   pgTable,
   serial,
-  varchar,
-  integer,
-  boolean,
   text,
   timestamp,
   uniqueIndex,
-  pgEnum,
+  varchar,
 } from "drizzle-orm/pg-core";
 
 import { InferSelectModel } from "drizzle-orm";
@@ -92,6 +93,23 @@ export const Reviews = pgTable(
   }),
 );
 
+export const eventTypeEnum = pgEnum("event_type", ["card_click", "video_play"]);
+
+export const Events = pgTable("events", {
+  id: serial("id").primaryKey(),
+  reviewId: integer("review_id")
+    .references(() => Reviews.id)
+    .notNull(),
+  productId: integer("product_id")
+    .references(() => Products.id)
+    .notNull(),
+  eventType: eventTypeEnum("event_type").notNull(),
+  metadata: jsonb("metadata"),
+  timestamp: timestamp("timestamp", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
 export type User = InferSelectModel<typeof Users>;
 export type Product = InferSelectModel<typeof Products>;
 export type Shade = InferSelectModel<typeof Shades>;
@@ -102,3 +120,6 @@ export type SkinTone = z.infer<typeof skinToneSchema>;
 
 export const undertoneSchema = z.enum(undertoneEnum.enumValues);
 export type Undertone = z.infer<typeof undertoneSchema>;
+
+export const eventTypeSchema = z.enum(eventTypeEnum.enumValues);
+export type EventType = z.infer<typeof eventTypeSchema>;

@@ -117,12 +117,16 @@ function VideoCard({
               {user.eyeColor}
             </div>
           </div>
-          <div className="mb-3">
-            <Star className="h-4 w-4 text-error" />
+          <div className="flex gap-x-1">
+            {Array.from({ length: review.starRating }).map((_, index) => {
+              return <Star key={index} className="h-4 w-4 text-error" />
+            })}
           </div>
-          <div className="text-review-text font-review-text mb-3">
+          <div className="pt-3" />
+          <div className="text-review-text font-review-text">
             {review.reviewText}
           </div>
+          <div className="pt-3" />
           {review.isVerified && (
             <div className="flex items-center gap-1 text-[10px] text-gray-500">
               <Image src="/shield.svg" alt="shield" width={12} height={12} />

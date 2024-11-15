@@ -102,7 +102,6 @@ function VideoCard({
             <div className="text-apercu">{shade.name}</div>
           </div>
         </div>
-
         <div className="p-3 md:p-4">
           <div className="mb-2 text-person-name font-person-name md:mb-3">
             {user.name}

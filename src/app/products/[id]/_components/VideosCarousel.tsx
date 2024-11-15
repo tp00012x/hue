@@ -103,7 +103,9 @@ function VideoCard({
           </div>
         </div>
         <div className="p-3 md:p-4">
-          <div className="mb-2 md:mb-3">{user.name}</div>
+          <div className="text-person-name font-person-name mb-2 md:mb-3">
+            {user.name}
+          </div>
           <div className="mb-3 flex flex-wrap gap-2 text-[10px] md:mb-4 md:text-xs">
             <div className="border border-primary px-1 py-1 md:px-2">
               {user.skinTone}
@@ -118,7 +120,9 @@ function VideoCard({
           <div className="mb-3">
             <Star className="h-4 w-4 text-error" />
           </div>
-          <div className="mb-3 text-sm">{review.reviewText}</div>
+          <div className="text-review-text font-review-text mb-3">
+            {review.reviewText}
+          </div>
           {review.isVerified && (
             <div className="flex items-center gap-1 text-[10px] text-gray-500">
               <Image src="/shield.svg" alt="shield" width={12} height={12} />

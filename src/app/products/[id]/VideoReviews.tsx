@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Review, User, Shade } from '@/db/schema'
+import { Review, Shade, User } from '@/db/schema'
+import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import ActiveFilters from './_components/ActiveFilters'
 import FilterDropdown from './_components/FilterDropdown'
 import ShadesDropdown from './_components/ShadesDropdown'
 import VideosCarousel from './_components/VideosCarousel'
-import clsx from 'clsx'
+import useLoadCustomStyleConfig from './_hooks/useLoadCustomStyleConfig'
 
 export default function VideoReviews({ productId }: { productId: string }) {
   const searchParams = useSearchParams()
@@ -15,6 +16,8 @@ export default function VideoReviews({ productId }: { productId: string }) {
   const [reviews, setReviews] = useState<Review[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [shades, setShades] = useState<Shade[]>([])
+
+  useLoadCustomStyleConfig()
 
   useEffect(() => {
     if (!productId) return

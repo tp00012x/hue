@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --text-color: #000;
+  --body-font-family: 'Sweet Sans Pro', sans-serif;
+  --person-name-font-weight: 400;
+  --person-name-font-size: 16px;
+  --review-text-font-weight: 400;
+  --review-text-font-size: 14px;
+  --main-header-font-size: 16px;
+  --main-header-font-weight: 700;
+  --main-header-text-transform: uppercase;
+}
